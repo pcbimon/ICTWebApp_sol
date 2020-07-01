@@ -1,6 +1,18 @@
-﻿@{
+﻿@model Student;
+@{
     ViewData["Title"] = "About";
+    var std = ViewData["stdvd"] as Student;
 }
 <h1>@ViewData["Title"]</h1>
 
 <p>Use this page to detail your site's About.</p>
+<h5>ID :@Model.ID</h5>
+<h5>Name :@Model.Name</h5>
+<h5>Department :@ViewData["Dept"]</h5>
+<hr />
+<h5>ID :@std.ID</h5>
+<h5>Name :@std.Name</h5>
+<hr />
+<h5>@ViewData["DeptName"]</h5>
+<p>@ViewBag.Address</p>
+<hr />

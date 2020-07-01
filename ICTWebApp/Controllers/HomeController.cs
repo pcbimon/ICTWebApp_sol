@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ICTWebApp.Models;
+using ICTWebApp.Models.ViewModels;
 using ICTWebApp.Services.ThaiDate;
 
 namespace ICTWebApp.Controllers
@@ -35,7 +36,20 @@ namespace ICTWebApp.Controllers
 
         public IActionResult About()
         {
-            return View();
+            var std = new Student()
+            {
+                ID = 1,
+                Name = "Patipat Chewprecha"
+            };
+            ViewData["Dept"] = "ICT";
+            ViewData["stdvd"] = new Student()
+            {
+                ID = 1,
+                Name = "Patipat Chewprecha"
+            };
+            ViewData["DeptName"] = 100;
+            ViewBag.Address = "Bangkok";
+            return View(std);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
