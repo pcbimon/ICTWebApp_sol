@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using ICTWebApp.Data;
+using ICTWebApp.Services.ThaiDate;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -35,6 +36,8 @@ namespace ICTWebApp
             //AddRazorRuntimeCompilation
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
+            services.AddSingleton<ThaiDate>(); //DI for views
+            services.AddSingleton<IThaiDate, ThaiDate>(); // DI for controllers
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

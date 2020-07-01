@@ -6,20 +6,25 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ICTWebApp.Models;
+using ICTWebApp.Services.ThaiDate;
 
 namespace ICTWebApp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IThaiDate _thaiDate;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,IThaiDate thaiDate)
         {
             _logger = logger;
+            _thaiDate = thaiDate;
         }
 
         public IActionResult Index()
         {
+            var myThaiDate = _thaiDate.ShowThaiDate();
+            ViewBag.myThaiDate = myThaiDate;
             return View();
         }
 
