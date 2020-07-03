@@ -5,7 +5,7 @@
     ViewData["Title"] = "ประเภทสินค้า";
 }
 @model ICollection<Category>
-<h1>แสดงรายการประเภทสินค้า</h1>
+<h1>แสดงรายการประเภทสินค้า @ViewBag.CategoryCount รายการ</h1>
 <a class="btn btn-primary btn-lg" asp-action="Create">เพิ่มประเภทสินค้า</a>
 <table class="table">
     <thead class="thead-dark">
