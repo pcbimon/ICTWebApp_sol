@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ICTWebApp.Data;
 using ICTWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using ReflectionIT.Mvc.Paging;
 
@@ -18,14 +19,24 @@ namespace ICTWebApp.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Index(int page = 1, string sortExpression="-CategoryID")
+        public async Task<IActionResult> Index(string filter,int page = 1, string sortExpression="-CategoryID")
         {
             //var category = await _context.Categories.ToListAsync();
             //var category = await _context.Categories.FromSqlRaw("select * from Categories;").ToListAsync();
             //ViewBag.CategoryCount = await _context.Categories.CountAsync();
 
-            var qry = _context.Categories;
+            var qry = _context.Categories.AsNoTracking().AsQueryable();
+            if (!string.IsNullOrWhiteSpace(filter))
+            {
+                qry = qry.Where(c => EF.Functions.Like(c.CategoryName, $"%{filter}%"));
+            }
+
             var categoryViewModel = await PagingList.CreateAsync(qry, 3, page, sortExpression, "CategoryID");
+            categoryViewModel.RouteValue = new RouteValueDictionary
+            {
+                {"filter",filter}
+            };
+            
             return View(categoryViewModel);
         }
 

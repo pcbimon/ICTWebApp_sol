@@ -8,6 +8,17 @@
     ViewData["Title"] = "ประเภทสินค้า";
 }
 ประเภทสินค้าทั้งหมด  @Model.TotalRecordCount รายการ
+<form method="get" class="form-inline">
+
+    <input name="filter" class="form-control" value="@Model.RouteValue["Filter"]" />&nbsp;
+
+    <button type="submit" class="btn btn-info">Search</button>
+
+</form>
+<br/>
+<a class="btn btn-primary btn-lg" asp-action="Create">เพิ่มประเภทสินค้า</a>
+<br />
+<br />
 <nav aria-label="Products navigation example">
     <vc:pager paging-list="@Model"></vc:pager>
 </nav>
