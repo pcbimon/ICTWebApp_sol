@@ -10,6 +10,7 @@ namespace ICTWebApp.Models
     public class Staff
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Display(Name = "ID")]
         public int StaffID { get; set; }
         [Display(Name = "ชื่อเจ้าหน้าที่")]
         [Required(ErrorMessage = "กรุณากรอกชื่อเจ้าหน้าที่")]

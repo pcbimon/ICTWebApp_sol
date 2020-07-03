@@ -20,9 +20,17 @@ namespace ICTWebApp.Controllers
         }
 
         // GET: Staff
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Staffs.ToListAsync());
+            return View();
+        }
+
+        // Get:Staff Ajax
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var staff = await _context.Staffs.ToListAsync();
+            return Ok(new {data = staff});
         }
 
         // GET: Staff/Details/5
