@@ -22,7 +22,8 @@
             <th scope="row">@cat.CategoryID</th>
             <td>@cat.CategoryName</td>
             <td>
-                แก้ไข ลบ
+                <a asp-action="Edit" asp-route-id="@cat.CategoryID">แก้ไข</a>
+                <a asp-action="Delete" asp-route-id="@cat.CategoryID">ลบ</a>
             </td>
         </tr>
     }

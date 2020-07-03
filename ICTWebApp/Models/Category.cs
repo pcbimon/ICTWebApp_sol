@@ -20,6 +20,9 @@ namespace ICTWebApp.Models
         public int CategoryID { get; set; }
         //Set Column Type
         //[Column(TypeName = "nText")]
+        //Set Display
+        [Display(Name = "ชื่อประเภทสินค้า")]
+        [Required(ErrorMessage = "กรุณากรอกชื่อประเภทสินค้า")]
         public string CategoryName { get; set; }
     }
 }

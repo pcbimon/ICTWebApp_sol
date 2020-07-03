@@ -3,14 +3,15 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewData["Title"] = "เพิ่มประเภทสินค้า";
+    ViewData["Title"] = "แก้ไขประเภทสินค้า";
 }
 
 <div class="row">
     <div class="col-md-6">
         <h5>เพิ่มประเภทสินค้า</h5>
-        <form method="post" asp-action="Create">
+        <form method="post" asp-action="Edit">
             <div class="form-group">
+                <input asp-for="CategoryID" type="hidden"/>
                 <label asp-for="CategoryName"></label>
                 <input type="text" class="form-control" id="categoryname" asp-for="CategoryName">
                 <span asp-validation-for="CategoryName" class="text-danger"></span>
