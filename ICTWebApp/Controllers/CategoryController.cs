@@ -19,7 +19,8 @@ namespace ICTWebApp.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var category = await _context.Categories.ToListAsync();
+            //var category = await _context.Categories.ToListAsync();
+            var category = await _context.Categories.FromSqlRaw("select * from Categories;").ToListAsync();
             ViewBag.CategoryCount = await _context.Categories.CountAsync();
             return View(category);
         }
