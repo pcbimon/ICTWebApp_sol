@@ -19,7 +19,7 @@ namespace ICTWebApp.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var category = await _context.Categories.ToListAsync();
+            var category = await _context.Categories.OrderByDescending(c=>c.CategoryID).ToListAsync();
             return View(category);
         }
 
