@@ -1,31 +1,45 @@
-﻿@*
+﻿@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+@model PagingList<Category>
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
     ViewData["Title"] = "ประเภทสินค้า";
 }
-@model ICollection<Category>
-<h1>แสดงรายการประเภทสินค้า @ViewBag.CategoryCount รายการ</h1>
-<a class="btn btn-primary btn-lg" asp-action="Create">เพิ่มประเภทสินค้า</a>
+ประเภทสินค้าทั้งหมด  @Model.TotalRecordCount รายการ
+<nav aria-label="Products navigation example">
+    <vc:pager paging-list="@Model"></vc:pager>
+</nav>
+
 <table class="table">
-    <thead class="thead-dark">
     <tr>
-        <th scope="col">#</th>
-        <th scope="col">ชื่อประเภทสินค้า</th>
-        <th scope="col">เครื่องมือ</th>
+        <th>
+            @Html.SortableHeaderFor(model => model.CategoryID, "CategoryID")
+        </th>
+        <th>
+            @Html.SortableHeaderFor(model => model.CategoryName, "-CategoryName")
+        </th>
+        <th>เครื่องมือ</th>
     </tr>
-    </thead>
-    <tbody>
-    @foreach (var cat in Model)
+
+    @foreach (var item in Model)
     {
         <tr>
-            <th scope="row">@cat.CategoryID</th>
-            <td>@cat.CategoryName</td>
             <td>
-                <a asp-action="Edit" asp-route-id="@cat.CategoryID">แก้ไข</a>
-                <a asp-action="Delete" asp-route-id="@cat.CategoryID">ลบ</a>
+                @Html.DisplayFor(modelItem => item.CategoryID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CategoryID">แก้ไข</a>
+                <a asp-action="Delete" asp-route-id="@item.CategoryID">ลบ</a>
             </td>
         </tr>
     }
-    </tbody>
 </table>
+
+<nav aria-label="Products navigation example">
+    <vc:pager paging-list="@Model" />
+</nav>

@@ -13,6 +13,7 @@ using ICTWebApp.Services.ThaiDate;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ReflectionIT.Mvc.Paging;
 
 namespace ICTWebApp
 {
@@ -38,6 +39,10 @@ namespace ICTWebApp
             services.AddRazorPages();
             services.AddSingleton<ThaiDate>(); //DI for views
             services.AddSingleton<IThaiDate, ThaiDate>(); // DI for controllers
+            services.AddPaging(options => {
+                options.ViewName = "Bootstrap4";
+                options.PageParameterName = "page";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
