@@ -15,5 +15,6 @@ namespace ICTWebApp.Data
         }
 
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Staff> Staffs { get; set; }
     }
 }
